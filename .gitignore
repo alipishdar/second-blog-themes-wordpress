@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+
+# Temporary files
+*.tmp
+*.log
+
+# Secrets
+.env
+.env.*
+
+# Backups
+.dont

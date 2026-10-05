@@ -1,0 +1,47 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group">
+  <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"72px","bottom":"42px"}}},"layout":{"type":"constrained"}} -->
+  <div class="wp-block-group alignwide" style="padding-top:72px;padding-bottom:42px">
+    <!-- wp:paragraph {"textColor":"muted","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.14em","fontSize":"0.75rem"}}} -->
+    <p class="has-muted-color has-text-color" style="font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase">Articles</p>
+    <!-- /wp:paragraph -->
+    <!-- wp:heading {"level":1,"fontSize":"xx-large","style":{"typography":{"fontSize":"clamp(3rem, 7vw, 6rem)"}}} -->
+    <h1 class="wp-block-heading has-xx-large-font-size" style="font-size:clamp(3rem, 7vw, 6rem)">All articles</h1>
+    <!-- /wp:heading -->
+    <!-- wp:paragraph {"fontSize":"large","textColor":"muted","style":{"layout":{"selfStretch":"fit","flexSize":null}}} -->
+    <p class="has-muted-color has-text-color has-large-font-size">A searchable, paginated archive for everything published on the journal.</p>
+    <!-- /wp:paragraph -->
+  </div>
+  <!-- /wp:group -->
+
+  <!-- wp:query {"query":{"perPage":12,"postType":"post","order":"desc","orderBy":"date"},"displayLayout":{"type":"grid","columns":3},"namespace":"agency-blog/articles"} -->
+  <div class="wp-block-query">
+    <!-- wp:post-template -->
+      <!-- wp:group {"className":"agency-blog-card","style":{"spacing":{"padding":{"bottom":"12px"}}},"layout":{"type":"constrained"}} -->
+      <div class="wp-block-group agency-blog-card" style="padding-bottom:12px">
+        <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3","className":"agency-blog-card-image"} /-->
+        <!-- wp:post-terms {"term":"category","fontSize":"small","textColor":"muted","style":{"spacing":{"margin":{"top":"14px"}}}} /-->
+        <!-- wp:post-title {"level":2,"isLink":true,"className":"agency-blog-card-title","fontSize":"large","style":{"spacing":{"margin":{"top":"8px","bottom":"8px"}}}} /-->
+        <!-- wp:post-excerpt {"moreText":"Read article →","showMoreOnNewLine":false,"fontSize":"small","textColor":"muted"} /-->
+        <!-- wp:post-date {"fontSize":"small","textColor":"muted"} /-->
+      </div>
+      <!-- /wp:group -->
+    <!-- /wp:post-template -->
+
+    <!-- wp:query-no-results -->
+      <!-- wp:paragraph {"align":"center"} --><p class="has-text-align-center">No articles have been published yet.</p><!-- /wp:paragraph -->
+    <!-- /wp:query-no-results -->
+
+    <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+      <!-- wp:query-pagination-previous /-->
+      <!-- wp:query-pagination-numbers /-->
+      <!-- wp:query-pagination-next /-->
+    <!-- /wp:query-pagination -->
+  </div>
+  <!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

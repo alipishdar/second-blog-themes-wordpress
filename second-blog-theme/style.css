@@ -1,0 +1,33 @@
+/*
+Theme Name: Agency Blog Block Theme
+Theme URI: https://example.com/
+Author: Agency
+Description: A lightweight, production-oriented WordPress block theme for a dedicated /blog/ content hub.
+Version: 1.0.0
+Requires at least: 6.6
+Requires PHP: 8.0
+Text Domain: agency-blog
+*/
+
+/* Keep theme-specific CSS minimal. Most design tokens live in theme.json. */
+
+.wp-site-blocks { overflow: clip; }
+
+.agency-blog-card-link { text-decoration: none; }
+.agency-blog-card-link:hover .agency-blog-card-title { text-decoration: underline; text-underline-offset: 0.16em; }
+
+.agency-blog-featured-image img,
+.agency-blog-card-image img {
+	transition: transform .35s ease;
+}
+
+.agency-blog-featured-image,
+.agency-blog-card-image { overflow: hidden; }
+
+.agency-blog-featured-image:hover img,
+.agency-blog-card-image:hover img { transform: scale(1.035); }
+
+@media (prefers-reduced-motion: reduce) {
+	.agency-blog-featured-image img,
+	.agency-blog-card-image img { transition: none; }
+}
