@@ -1,4 +1,4 @@
-# Agency Blog Block Theme
+# Second Blog Theme
 
 A lightweight WordPress block theme intended for a WordPress installation mounted at `/blog/` while the main website lives on another stack at the root domain.
 

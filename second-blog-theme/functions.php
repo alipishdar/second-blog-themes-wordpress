@@ -9,10 +9,10 @@
  *   Blog:             /blog/
  *   Articles:         /blog/articles/
  *   Category:         /blog/category/{slug}/
- *   Sub Category:   /blog/category/{slug}/
+ *   Child Category:   /blog/category/{slug}/
  *   Tag:              /blog/{tag-slug}/
  *   Single Post:      unchanged
- *  
+ *
  * Notes:
  * - Category hierarchy remains intact inside WordPress.
  * - Category URLs are intentionally FLAT: parent/child/grandchild are not
@@ -22,23 +22,6 @@
  *   404, preserving SEO signals after the migration.
  */
 
-declare(strict_types=1);
-
-add_action('after_setup_theme', static function (): void {
-    add_theme_support('post-thumbnails');
-    add_theme_support('responsive-embeds');
-    add_theme_support('editor-styles');
-});
-
-add_action('wp_enqueue_scripts', static function (): void {
-    wp_enqueue_style(
-        'agency-blog',
-        get_stylesheet_uri(),
-        [],
-        wp_get_theme()->get('Version')
-    );
-});
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -46,8 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Theme constants.
  */
-define( 'AGENCY_BLOG_THEME_VERSION', '1.0.0' );
-define( 'AGENCY_BLOG_TEXTDOMAIN', 'agency-blog-block-theme' );
+define( 'SECOND_BLOG_THEME_VERSION', '1.1.0' );
+define( 'SECOND_BLOG_THEME_TEXTDOMAIN', 'second-blog-theme' );
 
 /* ------------------------------------------------------------------------- *
  * 1. TAXONOMY REWRITE
@@ -67,7 +50,7 @@ define( 'AGENCY_BLOG_TEXTDOMAIN', 'agency-blog-block-theme' );
  *   /blog/category/marketing/
  *   /blog/category/content-marketing/
  */
-function agency_blog_category_rewrite_args( $args, $taxonomy ) {
+function second_blog_theme_category_rewrite_args( $args, $taxonomy ) {
 	if ( 'category' !== $taxonomy ) {
 		return $args;
 	}
@@ -86,7 +69,7 @@ function agency_blog_category_rewrite_args( $args, $taxonomy ) {
 
 	return $args;
 }
-add_filter( 'register_category_taxonomy_args', 'agency_blog_category_rewrite_args', 10, 2 );
+add_filter( 'register_category_taxonomy_args', 'second_blog_theme_category_rewrite_args', 10, 2 );
 
 /**
  * Tag URLs:
@@ -95,7 +78,7 @@ add_filter( 'register_category_taxonomy_args', 'agency_blog_category_rewrite_arg
  * The empty rewrite slug is intentional because WordPress itself lives under
  * /blog/. Therefore WordPress supplies /blog/ as the home path.
  */
-function agency_blog_tag_rewrite_args( $args, $taxonomy ) {
+function second_blog_theme_tag_rewrite_args( $args, $taxonomy ) {
 	if ( 'post_tag' !== $taxonomy ) {
 		return $args;
 	}
@@ -113,16 +96,16 @@ function agency_blog_tag_rewrite_args( $args, $taxonomy ) {
 
 	return $args;
 }
-add_filter( 'register_post_tag_taxonomy_args', 'agency_blog_tag_rewrite_args', 10, 2 );
+add_filter( 'register_post_tag_taxonomy_args', 'second_blog_theme_tag_rewrite_args', 10, 2 );
 
 /**
  * Flush rewrite rules only when the theme is activated/switching.
  * Never call flush_rewrite_rules() on every request.
  */
-function agency_blog_flush_rewrite_rules() {
+function second_blog_theme_flush_rewrite_rules() {
 	flush_rewrite_rules( false );
 }
-add_action( 'after_switch_theme', 'agency_blog_flush_rewrite_rules' );
+add_action( 'after_switch_theme', 'second_blog_theme_flush_rewrite_rules' );
 
 /* ------------------------------------------------------------------------- *
  * 2. RESERVED TAG SLUGS
@@ -135,7 +118,7 @@ add_action( 'after_switch_theme', 'agency_blog_flush_rewrite_rules' );
  * /blog/articles/  -> articles page
  * /blog/feed/      -> feed endpoints
  */
-function agency_blog_reject_reserved_tag_slugs( $term, $taxonomy, $args ) {
+function second_blog_theme_reject_reserved_tag_slugs( $term, $taxonomy, $args ) {
 	if ( 'post_tag' !== $taxonomy ) {
 		return $term;
 	}
@@ -146,15 +129,15 @@ function agency_blog_reject_reserved_tag_slugs( $term, $taxonomy, $args ) {
 		'feed',
 	);
 
-	$reserved = apply_filters( 'agency_blog_reserved_tag_slugs', $reserved );
+	$reserved = apply_filters( 'second_blog_theme_reserved_tag_slugs', $reserved );
 	$slug     = sanitize_title( $term );
 
 	if ( in_array( $slug, $reserved, true ) ) {
 		return new WP_Error(
-			'agency_blog_reserved_tag_slug',
+			'second_blog_theme_reserved_tag_slug',
 			sprintf(
 				/* translators: %s: reserved tag slug */
-				__( 'The tag slug "%s" is reserved by the Agency Blog URL structure.', AGENCY_BLOG_TEXTDOMAIN ),
+				__( 'The tag slug "%s" is reserved by the Second Blog Theme URL structure.', SECOND_BLOG_THEME_TEXTDOMAIN ),
 				$slug
 			)
 		);
@@ -162,7 +145,7 @@ function agency_blog_reject_reserved_tag_slugs( $term, $taxonomy, $args ) {
 
 	return $term;
 }
-add_filter( 'pre_insert_term', 'agency_blog_reject_reserved_tag_slugs', 10, 3 );
+add_filter( 'pre_insert_term', 'second_blog_theme_reject_reserved_tag_slugs', 10, 3 );
 
 /* ------------------------------------------------------------------------- *
  * 3. URL / REQUEST HELPERS
@@ -175,7 +158,7 @@ add_filter( 'pre_insert_term', 'agency_blog_reject_reserved_tag_slugs', 10, 3 );
  *   /blog/category/branding/        -> category/branding
  *   /blog/tag/seo/                  -> tag/seo
  */
-function agency_blog_get_relative_request_path() {
+function second_blog_theme_get_relative_request_path() {
 	$request_uri = isset( $_SERVER['REQUEST_URI'] )
 		? wp_unslash( $_SERVER['REQUEST_URI'] )
 		: '/';
@@ -203,11 +186,11 @@ function agency_blog_get_relative_request_path() {
 /**
  * Get the main website URL.
  *
- * In the Agency Blog architecture WordPress lives at /blog/, while the main
+ * In the Second Blog Theme architecture WordPress lives at /blog/, while the main
  * agency website lives at the domain root. This helper infers that root.
  * A filter is provided so the URL can be overridden in another project.
  */
-function agency_blog_main_site_url() {
+function second_blog_theme_main_site_url() {
 	$home_url   = home_url( '/' );
 	$parsed_url = wp_parse_url( $home_url );
 	$path       = isset( $parsed_url['path'] ) ? trim( $parsed_url['path'], '/' ) : '';
@@ -222,7 +205,7 @@ function agency_blog_main_site_url() {
 		$url = home_url( '/' );
 	}
 
-	return trailingslashit( apply_filters( 'agency_blog_main_site_url', $url ) );
+	return trailingslashit( apply_filters( 'second_blog_theme_main_site_url', $url ) );
 }
 
 /**
@@ -230,7 +213,7 @@ function agency_blog_main_site_url() {
  * structured data output. If so, our duplicate canonical/JSON-LD output is
  * disabled.
  */
-function agency_blog_seo_plugin_active() {
+function second_blog_theme_seo_plugin_active() {
 	return defined( 'WPSEO_VERSION' )
 		|| defined( 'RANK_MATH_VERSION' )
 		|| defined( 'SEOPRESS_VERSION' )
@@ -246,7 +229,7 @@ function agency_blog_seo_plugin_active() {
  * Category slugs are unique inside the category taxonomy, so the final slug
  * is sufficient for this migration.
  */
-function agency_blog_get_category_by_legacy_path( $legacy_path ) {
+function second_blog_theme_get_category_by_legacy_path( $legacy_path ) {
 	$segments = array_values(
 		array_filter(
 			explode( '/', trim( $legacy_path, '/' ) )
@@ -279,12 +262,12 @@ function agency_blog_get_category_by_legacy_path( $legacy_path ) {
  * The redirect only runs for 404 requests, so valid pages/posts are not
  * intercepted.
  */
-function agency_blog_redirect_legacy_taxonomy_urls() {
+function second_blog_theme_redirect_legacy_taxonomy_urls() {
 	if ( ! is_404() ) {
 		return;
 	}
 
-	$relative = agency_blog_get_relative_request_path();
+	$relative = second_blog_theme_get_relative_request_path();
 
 	if ( ! $relative ) {
 		return;
@@ -300,13 +283,13 @@ function agency_blog_redirect_legacy_taxonomy_urls() {
 	$category_regex = '#^' . preg_quote( $old_category_base, '#' ) . '/(.+)$#';
 
 	if ( preg_match( $category_regex, $relative, $matches ) ) {
-		$category = agency_blog_get_category_by_legacy_path( $matches[1] );
+		$category = second_blog_theme_get_category_by_legacy_path( $matches[1] );
 
 		if ( $category ) {
 			$target = get_term_link( $category, 'category' );
 
 			if ( ! is_wp_error( $target ) ) {
-				wp_safe_redirect( $target, 301, 'Agency Blog Theme' );
+				wp_safe_redirect( $target, 301, 'Second Blog Theme' );
 				exit;
 			}
 		}
@@ -323,13 +306,13 @@ function agency_blog_redirect_legacy_taxonomy_urls() {
 			$target = get_term_link( $tag, 'post_tag' );
 
 			if ( ! is_wp_error( $target ) ) {
-				wp_safe_redirect( $target, 301, 'Agency Blog Theme' );
+				wp_safe_redirect( $target, 301, 'Second Blog Theme' );
 				exit;
 			}
 		}
 	}
 }
-add_action( 'template_redirect', 'agency_blog_redirect_legacy_taxonomy_urls', 1 );
+add_action( 'template_redirect', 'second_blog_theme_redirect_legacy_taxonomy_urls', 1 );
 
 /* ------------------------------------------------------------------------- *
  * 5. CANONICAL URL FOR CATEGORY / TAG ARCHIVES
@@ -343,8 +326,8 @@ add_action( 'template_redirect', 'agency_blog_redirect_legacy_taxonomy_urls', 1 
  * this function provides the HTML <link rel="canonical"> for taxonomy
  * archives as well.
  */
-function agency_blog_taxonomy_canonical_link() {
-	if ( agency_blog_seo_plugin_active() ) {
+function second_blog_theme_taxonomy_canonical_link() {
+	if ( second_blog_theme_seo_plugin_active() ) {
 		return;
 	}
 
@@ -372,7 +355,7 @@ function agency_blog_taxonomy_canonical_link() {
 
 	echo '<link rel="canonical" href="' . esc_url( $canonical ) . '" />' . "\n";
 }
-add_action( 'wp_head', 'agency_blog_taxonomy_canonical_link', 1 );
+add_action( 'wp_head', 'second_blog_theme_taxonomy_canonical_link', 1 );
 
 /* ------------------------------------------------------------------------- *
  * 6. BREADCRUMB DATA
@@ -384,7 +367,7 @@ add_action( 'wp_head', 'agency_blog_taxonomy_canonical_link', 1 );
  * If a post has several categories, the deepest category is preferred so the
  * breadcrumb exposes the most specific taxonomy branch.
  */
-function agency_blog_get_primary_breadcrumb_category( $post_id = 0 ) {
+function second_blog_theme_get_primary_breadcrumb_category( $post_id = 0 ) {
 	$post_id    = $post_id ? absint( $post_id ) : get_the_ID();
 	$categories = get_the_category( $post_id );
 
@@ -425,14 +408,14 @@ function agency_blog_get_primary_breadcrumb_category( $post_id = 0 ) {
  *     'url'  => 'https://example.com/blog/branding/',
  *   ]
  */
-function agency_blog_get_breadcrumb_items() {
+function second_blog_theme_get_breadcrumb_items() {
 	$items = array(
 		array(
-			'name' => __( 'Home', AGENCY_BLOG_TEXTDOMAIN ),
-			'url'  => agency_blog_main_site_url(),
+			'name' => __( 'Home', SECOND_BLOG_THEME_TEXTDOMAIN ),
+			'url'  => second_blog_theme_main_site_url(),
 		),
 		array(
-			'name' => __( 'Blog', AGENCY_BLOG_TEXTDOMAIN ),
+			'name' => __( 'Blog', SECOND_BLOG_THEME_TEXTDOMAIN ),
 			'url'  => home_url( '/' ),
 		),
 	);
@@ -481,7 +464,7 @@ function agency_blog_get_breadcrumb_items() {
 	}
 
 	if ( is_singular( 'post' ) ) {
-		$category = agency_blog_get_primary_breadcrumb_category( get_the_ID() );
+		$category = second_blog_theme_get_primary_breadcrumb_category( get_the_ID() );
 
 		if ( $category instanceof WP_Term ) {
 			$ancestors = array_reverse( get_ancestors( $category->term_id, 'category', 'taxonomy' ) );
@@ -528,7 +511,7 @@ function agency_blog_get_breadcrumb_items() {
 		$items[] = array(
 			'name' => sprintf(
 				/* translators: %s: search query */
-				__( 'Search: %s', AGENCY_BLOG_TEXTDOMAIN ),
+				__( 'Search: %s', SECOND_BLOG_THEME_TEXTDOMAIN ),
 				get_search_query()
 			),
 			'url'  => '',
@@ -542,30 +525,30 @@ function agency_blog_get_breadcrumb_items() {
  * Render breadcrumbs as accessible HTML.
  *
  * Usage in PHP:
- *   echo agency_blog_breadcrumbs();
+ *   echo second_blog_theme_breadcrumbs();
  *
  * Usage in a Block Theme:
  *   Add a Shortcode block containing:
- *   [agency_breadcrumbs]
+ *   [second_breadcrumbs]
  */
-function agency_blog_breadcrumbs() {
-	$items = agency_blog_get_breadcrumb_items();
+function second_blog_theme_breadcrumbs() {
+	$items = second_blog_theme_get_breadcrumb_items();
 
 	if ( count( $items ) < 2 ) {
 		return '';
 	}
 
-	$output = '<nav class="agency-blog-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', AGENCY_BLOG_TEXTDOMAIN ) . '">';
-	$output .= '<ol class="agency-blog-breadcrumbs__list">';
+	$output = '<nav class="second-blog-breadcrumbs" aria-label="' . esc_attr__( 'Breadcrumb', SECOND_BLOG_THEME_TEXTDOMAIN ) . '">';
+	$output .= '<ol class="second-blog-breadcrumbs__list">';
 
 	$last_index = count( $items ) - 1;
 
 	foreach ( $items as $index => $item ) {
 		$is_current = $index === $last_index;
-		$output    .= '<li class="agency-blog-breadcrumbs__item' . ( $is_current ? ' is-current' : '' ) . '">';
+		$output    .= '<li class="second-blog-breadcrumbs__item' . ( $is_current ? ' is-current' : '' ) . '">';
 
 		if ( ! $is_current && ! empty( $item['url'] ) ) {
-			$output .= '<a class="agency-blog-breadcrumbs__link" href="' . esc_url( $item['url'] ) . '">';
+			$output .= '<a class="second-blog-breadcrumbs__link" href="' . esc_url( $item['url'] ) . '">';
 			$output .= esc_html( $item['name'] );
 			$output .= '</a>';
 		} else {
@@ -584,10 +567,10 @@ function agency_blog_breadcrumbs() {
 /**
  * Shortcode bridge for Block Theme templates/patterns.
  */
-function agency_blog_breadcrumbs_shortcode() {
-	return agency_blog_breadcrumbs();
+function second_blog_theme_breadcrumbs_shortcode() {
+	return second_blog_theme_breadcrumbs();
 }
-add_shortcode( 'agency_breadcrumbs', 'agency_blog_breadcrumbs_shortcode' );
+add_shortcode( 'second_breadcrumbs', 'second_blog_theme_breadcrumbs_shortcode' );
 
 /* ------------------------------------------------------------------------- *
  * 7. BREADCRUMB STRUCTURED DATA (JSON-LD)
@@ -596,8 +579,8 @@ add_shortcode( 'agency_breadcrumbs', 'agency_blog_breadcrumbs_shortcode' );
 /**
  * Output BreadcrumbList JSON-LD if an SEO plugin is not already doing it.
  */
-function agency_blog_breadcrumb_schema() {
-	if ( agency_blog_seo_plugin_active() ) {
+function second_blog_theme_breadcrumb_schema() {
+	if ( second_blog_theme_seo_plugin_active() ) {
 		return;
 	}
 
@@ -605,7 +588,7 @@ function agency_blog_breadcrumb_schema() {
 		return;
 	}
 
-	$items = agency_blog_get_breadcrumb_items();
+	$items = second_blog_theme_get_breadcrumb_items();
 
 	if ( count( $items ) < 2 ) {
 		return;
@@ -641,7 +624,7 @@ function agency_blog_breadcrumb_schema() {
 		JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
 	) . '</script>' . "\n";
 }
-add_action( 'wp_head', 'agency_blog_breadcrumb_schema', 20 );
+add_action( 'wp_head', 'second_blog_theme_breadcrumb_schema', 20 );
 
 /* ------------------------------------------------------------------------- *
  * 8. OPTIONAL THEME SETUP
@@ -650,11 +633,11 @@ add_action( 'wp_head', 'agency_blog_breadcrumb_schema', 20 );
  * by theme.json, block templates and patterns.
  */
 
-function agency_blog_theme_setup() {
+function second_blog_theme_theme_setup() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'responsive-embeds' );
 	add_theme_support( 'editor-styles' );
 	add_theme_support( 'wp-block-styles' );
 }
-add_action( 'after_setup_theme', 'agency_blog_theme_setup' );
+add_action( 'after_setup_theme', 'second_blog_theme_theme_setup' );

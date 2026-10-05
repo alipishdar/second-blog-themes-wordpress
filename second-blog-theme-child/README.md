@@ -1,6 +1,6 @@
 # Second Blog Theme Child Theme
 
-Persian name: قالب فرزند وبلاگ آژانسی
+Persian name: قالب فرزند دومین بلاگ
 
 A lightweight WordPress Block Child Theme for:
 

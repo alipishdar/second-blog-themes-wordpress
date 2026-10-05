@@ -1,33 +1,33 @@
 /*
-Theme Name: Agency Blog Block Theme
+Theme Name: Second Blog Theme
 Theme URI: https://example.com/
-Author: Agency
+Author: Second Blog Theme
 Description: A lightweight, production-oriented WordPress block theme for a dedicated /blog/ content hub.
 Version: 1.0.0
 Requires at least: 6.6
 Requires PHP: 8.0
-Text Domain: agency-blog
+Text Domain: second-blog-theme
 */
 
 /* Keep theme-specific CSS minimal. Most design tokens live in theme.json. */
 
 .wp-site-blocks { overflow: clip; }
 
-.agency-blog-card-link { text-decoration: none; }
-.agency-blog-card-link:hover .agency-blog-card-title { text-decoration: underline; text-underline-offset: 0.16em; }
+.second-blog-card-link { text-decoration: none; }
+.second-blog-card-link:hover .second-blog-card-title { text-decoration: underline; text-underline-offset: 0.16em; }
 
-.agency-blog-featured-image img,
-.agency-blog-card-image img {
+.second-blog-featured-image img,
+.second-blog-card-image img {
 	transition: transform .35s ease;
 }
 
-.agency-blog-featured-image,
-.agency-blog-card-image { overflow: hidden; }
+.second-blog-featured-image,
+.second-blog-card-image { overflow: hidden; }
 
-.agency-blog-featured-image:hover img,
-.agency-blog-card-image:hover img { transform: scale(1.035); }
+.second-blog-featured-image:hover img,
+.second-blog-card-image:hover img { transform: scale(1.035); }
 
 @media (prefers-reduced-motion: reduce) {
-	.agency-blog-featured-image img,
-	.agency-blog-card-image img { transition: none; }
+	.second-blog-featured-image img,
+	.second-blog-card-image img { transition: none; }
 }

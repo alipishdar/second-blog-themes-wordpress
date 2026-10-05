@@ -1,15 +1,18 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
-<!-- wp:group {"tagName":"main","layout":{"type":"constrained"},"style":{"spacing":{"padding":{"top":"64px","bottom":"64px"}}}} -->
-<main class="wp-block-group" style="padding-top:64px;padding-bottom:64px">
-  <!-- wp:query {"query":{"perPage":12,"inherit":true},"displayLayout":{"type":"grid","columns":3}} -->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
+<div class="wp-block-group">
+  <!-- wp:query-title /-->
+  <!-- wp:query {"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"displayLayout":{"type":"list"}} -->
   <div class="wp-block-query">
     <!-- wp:post-template -->
-      <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3","className":"agency-blog-card-image"} /-->
-      <!-- wp:post-title {"level":2,"isLink":true,"fontSize":"large"} /-->
-      <!-- wp:post-date {"fontSize":"small","textColor":"muted"} /-->
+      <!-- wp:post-title {"isLink":true} /-->
+      <!-- wp:post-excerpt /-->
     <!-- /wp:post-template -->
+    <!-- wp:query-pagination /-->
   </div>
   <!-- /wp:query -->
-</main>
+</div>
 <!-- /wp:group -->
+
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
