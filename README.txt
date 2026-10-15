@@ -22,7 +22,7 @@ URL architecture
 - Blog: /blog/
 - Articles: /blog/articles/
 - Category: /blog/category/{slug}/
-- Child category: /blog/category/{slug}/
+- Sub category: /blog/category/{slug}/
 - Tag: /blog/{tag-slug}/
 - Single post: unchanged
 
