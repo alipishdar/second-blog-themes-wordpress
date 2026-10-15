@@ -1,0 +1,80 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"tag-page","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<main class="wp-block-group tag-page">
+
+  <!-- wp:group {"className":"tag-intro","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group tag-intro">
+    <!-- wp:paragraph {"className":"tag-eyebrow"} -->
+    <p class="tag-eyebrow">PEDAR JOURNAL <span aria-hidden="true">/</span> KNOWLEDGE &amp; IDEAS</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:query-title {"type":"tag","showPrefix":false,"level":1,"className":"tag-title"} /-->
+
+    <!-- wp:term-description {"className":"tag-description"} /-->
+  </div>
+  <!-- /wp:group -->
+
+  <!-- wp:query {"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"align":"wide","className":"tag-query"} -->
+  <div class="wp-block-query alignwide tag-query">
+
+    <!-- wp:post-template {"className":"tag-grid","layout":{"type":"grid","columnCount":3}} -->
+
+      <!-- wp:group {"className":"post-card","layout":{"type":"constrained"}} -->
+      <div class="wp-block-group post-card">
+
+        <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/10","sizeSlug":"large","className":"post-card__image"} /-->
+
+        <!-- wp:group {"className":"post-card__body","layout":{"type":"constrained"}} -->
+        <div class="wp-block-group post-card__body">
+
+          <!-- wp:group {"className":"post-card__meta","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right"}} -->
+          <div class="wp-block-group post-card__meta">
+            <!-- wp:post-terms {"term":"category","separator":" ","className":"post-card__categories"} /-->
+            <!-- wp:post-date {"format":"j F Y","className":"post-card__date"} /-->
+          </div>
+          <!-- /wp:group -->
+
+          <!-- wp:post-title {"level":2,"isLink":true,"className":"post-card__title"} /-->
+
+          <!-- wp:post-excerpt {"excerptLength":24,"showMoreOnNewLine":false,"className":"post-card__excerpt"} /-->
+
+          <!-- wp:read-more {"content":"ادامه مطلب","className":"post-card__read-more"} /-->
+
+        </div>
+        <!-- /wp:group -->
+      </div>
+      <!-- /wp:group -->
+
+    <!-- /wp:post-template -->
+
+    <!-- wp:query-no-results -->
+      <!-- wp:group {"className":"tag-empty","layout":{"type":"constrained"}} -->
+      <div class="wp-block-group tag-empty">
+        <!-- wp:heading {"level":2} -->
+        <h2 class="wp-block-heading">هنوز مقاله‌ای منتشر نشده است.</h2>
+        <!-- /wp:heading -->
+        <!-- wp:paragraph -->
+        <p>به‌زودی مطالب تازه در این بخش قرار می‌گیرند.</p>
+        <!-- /wp:paragraph -->
+      </div>
+      <!-- /wp:group -->
+    <!-- /wp:query-no-results -->
+
+    <!-- wp:group {"className":"tag-pagination","layout":{"type":"constrained"}} -->
+    <div class="wp-block-group tag-pagination">
+      <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+        <!-- wp:query-pagination-previous {"label":"مقالات جدیدتر"} /-->
+        <!-- wp:query-pagination-numbers /-->
+        <!-- wp:query-pagination-next {"label":"مقالات قدیمی‌تر"} /-->
+      <!-- /wp:query-pagination -->
+    </div>
+    <!-- /wp:group -->
+
+  </div>
+  <!-- /wp:query -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

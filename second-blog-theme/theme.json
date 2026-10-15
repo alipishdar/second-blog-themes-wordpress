@@ -1,51 +1,135 @@
 {
-  "$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/wp/7.1/schemas/json/theme.json",
   "version": 3,
   "settings": {
     "appearanceTools": true,
     "layout": {
-      "contentSize": "760px",
+      "contentSize": "1200px",
       "wideSize": "1200px"
     },
     "spacing": {
-      "blockGap": "1.25rem",
+      "blockGap": true,
       "units": ["px", "em", "rem", "%", "vw", "vh"]
     },
     "typography": {
       "fluid": true,
       "fontFamilies": [
-        {"fontFamily":"system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif","slug":"system","name":"System Sans"},
-        {"fontFamily":"Georgia, \"Times New Roman\", serif","slug":"serif","name":"Editorial Serif"}
+        {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "slug": "system",
+          "name": "System Sans"
+        },
+        {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "slug": "serif",
+          "name": "Editorial Serif"
+        }
       ]
     },
     "color": {
+      "defaultPalette": false,
+      "defaultGradients": false,
       "palette": [
-        {"slug":"ink","color":"#111827","name":"Ink"},
-        {"slug":"muted","color":"#667085","name":"Muted"},
-        {"slug":"paper","color":"#F8F8F5","name":"Paper"},
-        {"slug":"surface","color":"#FFFFFF","name":"Surface"},
-        {"slug":"line","color":"#E5E7EB","name":"Line"},
-        {"slug":"accent","color":"#111111","name":"Accent"}
+        {
+          "slug": "ink",
+          "color": "#111827",
+          "name": "Ink"
+        },
+        {
+          "slug": "muted",
+          "color": "#667085",
+          "name": "Muted"
+        },
+        {
+          "slug": "paper",
+          "color": "#F8F8F5",
+          "name": "Paper"
+        },
+        {
+          "slug": "surface",
+          "color": "#FFFFFF",
+          "name": "Surface"
+        },
+        {
+          "slug": "line",
+          "color": "#E5E7EB",
+          "name": "Line"
+        },
+        {
+          "slug": "accent",
+          "color": "#111111",
+          "name": "Accent"
+        }
       ]
     }
   },
   "styles": {
-    "color": {"background":"var:preset|color|paper","text":"var:preset|color|ink"},
-    "spacing": {"padding":{"top":"0","bottom":"0"}},
-    "typography": {"fontFamily":"var:preset|font-family|system","fontSize":"1rem","lineHeight":"1.75"},
+    "color": {
+      "background": "var:preset|color|paper",
+      "text": "var:preset|color|ink"
+    },
+    "spacing": {
+      "blockGap": "1.25rem",
+      "padding": {
+        "top": "0",
+        "bottom": "0"
+      }
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|system",
+      "fontSize": "1rem",
+      "lineHeight": "1.75"
+    },
     "elements": {
-      "heading":{"typography":{"fontWeight":"650","lineHeight":"1.12","letterSpacing":"-0.02em"}},
-      "link":{"color":{"text":"inherit"}}
+      "heading": {
+        "typography": {
+          "fontWeight": "650",
+          "lineHeight": "1.12",
+          "letterSpacing": "-0.02em"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "inherit"
+        }
+      }
     },
     "blocks": {
-      "core/button":{"border":{"radius":"999px"}},
-      "core/query-pagination":{"spacing":{"margin":{"top":"3rem"}}}
+      "core/button": {
+        "border": {
+          "radius": "999px"
+        },
+        "color": {
+          "background": "var:preset|color|accent",
+          "text": "var:preset|color|surface"
+        }
+      },
+      "core/query-pagination": {
+        "spacing": {
+          "margin": {
+            "top": "3rem"
+          }
+        }
+      }
     }
   },
   "customTemplates": [],
   "templateParts": [
-    {"name":"header","title":"Header","area":"header"},
-    {"name":"footer","title":"Footer","area":"footer"}
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    },
+    {
+      "name": "aside",
+      "title": "ASide",
+      "area": "aside"
+    }
   ],
   "patterns": []
 }

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/wp/7.1/schemas/json/theme.json",
+  "version": 3,
+  "title": "Dark — Obsidian & Bronze",
+  "settings": {
+    "color": {
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "palette": [
+        {
+          "slug": "ink",
+          "color": "#F2F0EA",
+          "name": "Ink — Dark Theme Text"
+        },
+        {
+          "slug": "muted",
+          "color": "#A5A9B2",
+          "name": "Muted — Dark Theme"
+        },
+        {
+          "slug": "paper",
+          "color": "#101216",
+          "name": "Paper — Obsidian Background"
+        },
+        {
+          "slug": "surface",
+          "color": "#1A1E25",
+          "name": "Surface — Card Background"
+        },
+        {
+          "slug": "line",
+          "color": "#343A45",
+          "name": "Line — Dark Border"
+        },
+        {
+          "slug": "accent",
+          "color": "#D8B77A",
+          "name": "Accent — Warm Bronze"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|paper",
+      "text": "var:preset|color|ink"
+    },
+    "elements": {
+      "heading": {
+        "color": {
+          "text": "var:preset|color|ink"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var:preset|color|accent"
+        }
+      }
+    },
+    "blocks": {
+      "core/button": {
+        "border": {
+          "radius": "999px"
+        },
+        "color": {
+          "background": "var:preset|color|accent",
+          "text": "var:preset|color|paper"
+        }
+      },
+      "core/post-excerpt": {
+        "color": {
+          "text": "var:preset|color|muted"
+        }
+      },
+      "core/post-date": {
+        "color": {
+          "text": "var:preset|color|muted"
+        }
+      },
+      "core/post-featured-image": {
+        "border": {
+          "radius": "12px"
+        }
+      }
+    },
+    "css": ".post-card { background-color: var(--wp--preset--color--surface); border: 1px solid var(--wp--preset--color--line); border-radius: 16px; overflow: hidden; }\n.post-card__body { padding: 1.25rem; }\n.post-card__meta, .post-card__date, .post-card__excerpt { color: var(--wp--preset--color--muted); }\n.post-card__title { color: var(--wp--preset--color--ink); }\n.post-card__read-more { color: var(--wp--preset--color--accent); }\n.archive-empty { border: 1px solid var(--wp--preset--color--line); border-radius: 16px; padding: 1.5rem; }"
+  }
+}
