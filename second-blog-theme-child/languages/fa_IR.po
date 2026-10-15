@@ -1,13 +1,23 @@
-msgid 
-msgstr 
-Project-Id-Version Second Blog Themen
-Language fa_IRn
-Content-Type textplain; charset=UTF-8n
-Content-Transfer-Encoding 8bitn
-Plural-Forms nplurals=2; plural=(n  1);n
-X-Domain second-blog-themen
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Decorant translation team <info@decorant.ir>\n"
+"Language-Team: \n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.10\n"
 
-#. Description of the theme
 # style.css
-msgid A lightweight, production-oriented WordPress block theme for a dedicated blog content hub.
-msgstr یک پوسته بلوکی سبک و مناسب استفاده عملیاتی برای یک بخش محتوایی مستقل در مسیر blog.
+#. Description of the theme
+msgid "Read more"
+msgstr "ادامه مطلب"
+
+msgid "No posts found."
+msgstr "هیچ نوشته‌ای پیدا نشد."
+
+msgid "Search"
+msgstr "جستجو"

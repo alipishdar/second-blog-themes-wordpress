@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Theme constants.
  */
-define( 'SECOND_BLOG_THEME_VERSION', '1.1.0' );
+define( 'SECOND_BLOG_THEME_VERSION', '1.1.1' );
 define( 'SECOND_BLOG_THEME_TEXTDOMAIN', 'second-blog-theme' );
 
 /* ------------------------------------------------------------------------- *
