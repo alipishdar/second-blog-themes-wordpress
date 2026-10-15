@@ -1,0 +1,13 @@
+msgid 
+msgstr 
+Project-Id-Version Second Blog Themen
+Language fa_IRn
+Content-Type textplain; charset=UTF-8n
+Content-Transfer-Encoding 8bitn
+Plural-Forms nplurals=2; plural=(n  1);n
+X-Domain second-blog-themen
+
+#. Description of the theme
+# style.css
+msgid A lightweight, production-oriented WordPress block theme for a dedicated blog content hub.
+msgstr یک پوسته بلوکی سبک و مناسب استفاده عملیاتی برای یک بخش محتوایی مستقل در مسیر blog.
