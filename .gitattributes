@@ -1,0 +1,41 @@
+# ========================================
+# Git Attributes
+# ========================================
+
+# Detect text files automatically
+* text=auto
+
+# Source files
+*.php   text
+*.css   text
+*.scss  text
+*.js    text
+*.json  text
+*.html  text
+*.xml   text
+*.md    text
+
+# WordPress files
+*.pot   text
+*.po    text
+*.mo    binary
+
+# Images
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.svg   text
+
+# Fonts
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.eot   binary
+
+# Archives / documents
+*.zip   binary
+*.pdf   binary
