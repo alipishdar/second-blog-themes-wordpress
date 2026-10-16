@@ -11,6 +11,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.10\n"
 
+msgid "A lightweight, production-oriented WordPress block theme for a dedicated /blog/ content hub."
+msgstr ""
+"یک قالب بلوکیِ سبک و مناسب برای محیط عملیاتی (Production) در وردپرس، ویژهٔ یک مرکز محتوای اختصاصی در مسیر /blog/.Project-"
+"Id-Version:"
+
 # style.css
 #. Description of the theme
 msgid "Read more"

@@ -11,6 +11,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.10\n"
 
+msgid "Child block theme for Second Blog Theme. Keeps project customizations separate from the parent theme."
+msgstr "قالب فرزند (Child Theme) مبتنی بر بلوک برای قالب «Second Blog Theme». این کار باعث می‌شود شخصی‌سازی‌های پروژه از قالب والد (Parent Theme) جدا بمانند."
+
 # style.css
 #. Description of the theme
 msgid "Read more"
