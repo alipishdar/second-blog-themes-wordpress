@@ -1,80 +1,116 @@
-<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+<!--
+  WordPress block-theme category archive template.
+  The template is HTML block markup, not PHP. The actual post list inherits
+  the current category archive query so WordPress supplies the right posts.
+-->
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","className":"category-page","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"tagName":"main","className":"category-page","layout":{"type":"constrained"}} -->
 <main class="wp-block-group category-page">
-
-  <!-- wp:group {"className":"category-intro","layout":{"type":"constrained"}} -->
-  <div class="wp-block-group category-intro">
-    <!-- wp:paragraph {"className":"category-eyebrow"} -->
-    <p class="category-eyebrow">PEDAR JOURNAL <span aria-hidden="true">/</span> KNOWLEDGE &amp; IDEAS</p>
+  <!-- wp:group {"className":"site-container category-page__container","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group site-container category-page__container">
+    <!-- wp:paragraph {"className":"category-breadcrumb"} -->
+    <p class="category-breadcrumb"><a href="/">خانه</a><span aria-hidden="true">/</span><a href="/blog/">مجله</a><span aria-hidden="true">/</span><span aria-current="page">دسته‌بندی</span></p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:query-title {"type":"category","showPrefix":false,"level":1,"className":"category-title"} /-->
+    <!-- wp:group {"className":"category-hero","layout":{"type":"constrained"}} -->
+    <div class="wp-block-group category-hero">
+      <!-- wp:group {"className":"category-hero__inner","layout":{"type":"constrained"}} -->
+      <div class="wp-block-group category-hero__inner">
+        <!-- wp:group {"className":"category-hero__copy","layout":{"type":"constrained"}} -->
+        <div class="wp-block-group category-hero__copy">
+          <!-- wp:paragraph {"className":"eyebrow"} -->
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>دسته‌بندی مقاله‌ها</p>
+          <!-- /wp:paragraph -->
 
-    <!-- wp:term-description {"className":"category-description"} /-->
-  </div>
-  <!-- /wp:group -->
+          <!-- wp:query-title {"type":"archive","showPrefix":false,"level":1,"className":"category-hero__title"} /-->
+          <!-- wp:term-description {"className":"category-hero__description"} /-->
 
-  <!-- wp:query {"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"align":"wide","className":"category-query"} -->
-  <div class="wp-block-query alignwide category-query">
+          <!-- wp:paragraph {"className":"hero-static-note"} -->
+          <p class="hero-static-note">راهنماها و مقاله‌های مرتبط با این موضوع، از مقدماتی تا پیشرفته.</p>
+          <!-- /wp:paragraph -->
+        </div>
+        <!-- /wp:group -->
 
-    <!-- wp:post-template {"className":"category-grid","layout":{"type":"grid","columnCount":3}} -->
+        <!-- wp:html -->
+        <div class="category-hero__art" aria-hidden="true">
+          <div class="hero-art__orbit hero-art__orbit--one"></div>
+          <div class="hero-art__orbit hero-art__orbit--two"></div>
+          <div class="hero-art__panel hero-art__panel--back"><span></span><span></span><span></span></div>
+          <div class="hero-art__panel hero-art__panel--front">
+            <div class="hero-art__panel-top"><i></i><i></i><i></i><b>رویش / استودیو</b></div>
+            <div class="hero-art__mock-title"></div><div class="hero-art__mock-line"></div><div class="hero-art__mock-line hero-art__mock-line--short"></div>
+            <div class="hero-art__mock-cards"><span></span><span></span><span></span></div>
+          </div>
+          <div class="hero-art__badge hero-art__badge--top">UI / UX</div>
+          <div class="hero-art__badge hero-art__badge--bottom"><span aria-hidden="true">✳</span> طراحی با فکر</div>
+          <span class="hero-art__spark hero-art__spark--one">✳</span><span class="hero-art__spark hero-art__spark--two">＋</span>
+        </div>
+        <!-- /wp:html -->
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
 
-      <!-- wp:group {"className":"post-card","layout":{"type":"constrained"}} -->
+    <!-- wp:search {"label":"جست‌وجو در مقاله‌ها","showLabel":false,"placeholder":"جست‌وجو در مقاله‌ها…","buttonText":"جست‌وجو","buttonUseIcon":false,"className":"category-search"} /-->
+
+    <!-- wp:group {"className":"section-heading","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"bottom"}} -->
+    <div class="wp-block-group section-heading">
+      <!-- wp:group {"className":"section-heading__copy","layout":{"type":"constrained"}} -->
+      <div class="wp-block-group section-heading__copy">
+        <!-- wp:paragraph {"className":"eyebrow eyebrow--muted"} -->
+        <p class="eyebrow eyebrow--muted">کتابخانه محتوا</p>
+        <!-- /wp:paragraph -->
+        <!-- wp:heading {"level":2} -->
+        <h2 class="wp-block-heading">مقاله‌های این دسته</h2>
+        <!-- /wp:heading -->
+        <!-- wp:paragraph {"className":"section-heading__description"} -->
+        <p class="section-heading__description">نوشته‌های مرتبط، به ترتیب جدیدترین انتشار.</p>
+        <!-- /wp:paragraph -->
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:query {"queryId":0,"query":{"perPage":6,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"displayLayout":{"type":"flex","columns":3},"className":"category-query"} -->
+    <div class="wp-block-query category-query">
+      <!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+      <!-- wp:group {"className":"post-card","layout":{"type":"flex","orientation":"vertical"}} -->
       <div class="wp-block-group post-card">
-
-        <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/10","sizeSlug":"large","className":"post-card__image"} /-->
-
-        <!-- wp:group {"className":"post-card__body","layout":{"type":"constrained"}} -->
+        <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","className":"post-card__media"} /-->
+        <!-- wp:group {"className":"post-card__body","layout":{"type":"flex","orientation":"vertical"}} -->
         <div class="wp-block-group post-card__body">
-
-          <!-- wp:group {"className":"post-card__meta","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right"}} -->
-          <div class="wp-block-group post-card__meta">
-            <!-- wp:post-terms {"term":"category","separator":" ","className":"post-card__categories"} /-->
+          <!-- wp:post-terms {"term":"category","className":"post-card__category"} /-->
+          <!-- wp:post-title {"isLink":true,"level":3,"className":"post-card__title"} /-->
+          <!-- wp:post-excerpt {"excerptLength":22,"moreText":"","showMoreOnNewLine":false,"className":"post-card__excerpt"} /-->
+          <!-- wp:group {"className":"post-card__footer","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+          <div class="wp-block-group post-card__footer">
+            <!-- wp:post-author-name {"isLink":false,"className":"post-card__author"} /-->
             <!-- wp:post-date {"format":"j F Y","className":"post-card__date"} /-->
           </div>
           <!-- /wp:group -->
-
-          <!-- wp:post-title {"level":2,"isLink":true,"className":"post-card__title"} /-->
-
-          <!-- wp:post-excerpt {"excerptLength":24,"showMoreOnNewLine":false,"className":"post-card__excerpt"} /-->
-
-          <!-- wp:read-more {"content":"ادامه مطلب","className":"post-card__read-more"} /-->
-
         </div>
         <!-- /wp:group -->
       </div>
       <!-- /wp:group -->
+      <!-- /wp:post-template -->
 
-    <!-- /wp:post-template -->
-
-    <!-- wp:query-no-results -->
-      <!-- wp:group {"className":"category-empty","layout":{"type":"constrained"}} -->
-      <div class="wp-block-group category-empty">
-        <!-- wp:heading {"level":2} -->
-        <h2 class="wp-block-heading">هنوز مقاله‌ای منتشر نشده است.</h2>
-        <!-- /wp:heading -->
-        <!-- wp:paragraph -->
-        <p>به‌زودی مطالب تازه در این بخش قرار می‌گیرند.</p>
-        <!-- /wp:paragraph -->
-      </div>
-      <!-- /wp:group -->
-    <!-- /wp:query-no-results -->
-
-    <!-- wp:group {"className":"category-pagination","layout":{"type":"constrained"}} -->
-    <div class="wp-block-group category-pagination">
-      <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
-        <!-- wp:query-pagination-previous {"label":"مقالات جدیدتر"} /-->
+      <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"},"className":"category-pagination"} -->
+        <!-- wp:query-pagination-previous {"label":"قبلی"} /-->
         <!-- wp:query-pagination-numbers /-->
-        <!-- wp:query-pagination-next {"label":"مقالات قدیمی‌تر"} /-->
+        <!-- wp:query-pagination-next {"label":"بعدی"} /-->
       <!-- /wp:query-pagination -->
+
+      <!-- wp:query-no-results -->
+        <!-- wp:paragraph {"align":"center"} -->
+        <p class="has-text-align-center">هنوز مقاله‌ای در این دسته ثبت نشده است.</p>
+        <!-- /wp:paragraph -->
+      <!-- /wp:query-no-results -->
     </div>
-    <!-- /wp:group -->
-
+    <!-- /wp:query -->
   </div>
-  <!-- /wp:query -->
-
+  <!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->
